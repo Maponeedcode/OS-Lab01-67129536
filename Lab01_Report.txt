@@ -1,16 +1,16 @@
 ======================================================
-COE67-XXX Operating Systems - Lab 01 Report
-Name: 
-Student ID: 
+COE67-222 Operating Systems - Lab 01 Report
+Name: กฤษกร คงคาหลวง
+Student ID: 67129536
 ======================================================
 
 1. Hardware Baseline:
-- OS Version:
-- Number of CPU Cores:
-- Total RAM:
+-OS Name: Linux 6.8.0-1052-azure 
+-Number of CPU Cores: 2 
+-Total RAM: 7.76 GB 
 
 2. Observation (from htop during stress test):
-[Write your answer here]
+จากการดูผ่าน htop พบว่าสคริปต์ Python ดึง CPU ไปใช้งานหนัก 100% เพียงแค่คอร์เดียวเท่านั้น คือคอร์ 0 ส่วนคอร์อื่นๆ ไม่ได้ถูกนำมาใช้งาน
 
 3. Analysis:
-[Write your answer here]
+เพราะ การที่เราสามรถรู้ขีดจำกัดของเครื่องทำให้เราวางแผน ในการจัดการงานต่างๆการฝึกโมเดลให้มีประสิทธิ์ภาพ รวมถึงการปรับจูนให้โมเดลทำงานได้ในทรัพยากรที่จำกัดได้ด้วย 
