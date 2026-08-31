@@ -1,0 +1,17 @@
+{
+  "name": "OS Lab Environment (Python & Linux)",
+  "image": "mcr.microsoft.com/devcontainers/python:1-3.11-bullseye",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "python.defaultInterpreterPath": "/usr/local/bin/python"
+      },
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance"
+      ]
+    }
+  },
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y htop && pip install -r requirements.txt"
+}

@@ -1,0 +1,16 @@
+======================================================
+COE67-XXX Operating Systems - Lab 01 Report
+Name: 
+Student ID: 
+======================================================
+
+1. Hardware Baseline:
+- OS Version:
+- Number of CPU Cores:
+- Total RAM:
+
+2. Observation (from htop during stress test):
+[Write your answer here]
+
+3. Analysis:
+[Write your answer here]
