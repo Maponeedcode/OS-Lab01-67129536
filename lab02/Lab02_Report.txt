@@ -1,0 +1,19 @@
+======================================================
+COE67-222 Operating Systems - Lab 02 Report
+Name: กฤษกร คงคาหลวง
+Student ID: 67129536
+======================================================
+
+1. Execution Time Comparison:
+- Sequential Time: [11.17] seconds
+- Multithreading Time: [11.26] seconds
+- Multiprocessing Time: [8.54] seconds
+
+2. System Observation (htop):
+จากการสังเกตใน htop เมื่อรันด้วย Multithreading พบว่า CPU ทำงานหนัก 100% เพียงแค่คอร์เดียว แต่เมื่อเปลี่ยqนมารันด้วย Multiprocessing พบว่า CPU กระจายการทำงานและพุ่งขึ้น 100% พร้อมกันทุกคอร์ที่มี
+
+3. Analysis (The GIL):
+Multithreading ไม่สามารถทำให้โปรแกรมทำงานเร็วขึ้นได้เพราะติดข้อจำกัด GIL (Global Interpreter Lock) ของ 
+Python ที่บังคับให้ประมวลผลได้ทีละ 1 Thread เท่านั้น ในขณะที่ Multiprocessing เป็นการโคลน Process ใหม่แยกออกจากกันอย่างเด็ดขาด แต่ละ Process 
+มีหน่วยความจำและ GIL เป็นของตัวเอง OS จึงสามารถกระจายงาน CPU-bound ไปให้คอร์อื่นๆ ทำงานคู่ขนานกันได้
+และเพื่อป้องกันปัญหา Zombie Process เมื่อใช้งาน Process ตัว Parent จะต้องเรียกใช้คำสั่ง os.wait() เสมอ
