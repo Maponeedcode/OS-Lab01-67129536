@@ -1,0 +1,30 @@
+======================================================
+COE67-222 Operating Systems - Lab 10 Report (Final)
+Name: Kitsakorn Kongkaluang
+Student ID: 67129536
+======================================================
+
+1. The Role of the Operating System:
+In this mini-project, our Python script simulated the major responsibilities of an Operating System. 
+Match the specific code behavior in `ultimate_cluster_os.py` to the corresponding OS concept you learned throughout the semester:
+
+- File System & Permissions (Lab 9): 
+if not os.path.exists(dataset_path): โค้ดนี้ทำหน้าที่เป็น Gatekeeper ตรวจสอบไฟล์ ทำให้ Workload D (Hacker) ที่พยายามเรียกไฟล์ secret_keys.txt 
+ซึ่งไม่มีอยู่จริงหรือไม่มีสิทธิ์เข้าถึง ถูกระบบปฏิเสธ (FAILED) ทันทีตั้งแต่ด่านแรก
+
+- Memory Management (Labs 5/6):
+ระบบป้องกัน Thrashing โดยใช้ while True: loop เพื่อเช็คเงื่อนไข self.available_ram_gb >= req_ram ถ้า RAM ว่างไม่พอ มันจะสั่งให้โปรเซสรอไปก่อน (time.sleep(0.5)) 
+แทนที่จะฝืนรันจน RAM ทะลุขีดจำกัดแล้วต้องไปทำ Swapping ลงฮาร์ดดิสก์
+
+- Concurrency & Deadlocks (Labs 3/4):
+ระบบป้องกัน Deadlock (Circular Wait) โดยใช้คำสั่ง sorted_gpus = sorted(req_gpus) การบังคับให้ทุกโปรเซสต้องล็อก GPU ตามลำดับหมายเลขจากน้อยไปมากเสมอ 
+เช่น 0 -> 1 -> 2 ทำให้ไม่มีโปรแกรมไหนดึงดันจองทรัพยากรข้ามหน้าข้ามตากันจนเกิดสภาวะล็อกตาย
+
+2. Hardware Utilization:
+ระบบสามารถรันทั้ง 3 งานพร้อมกันได้ เพราะไม่มีใครแย่งทรัพยากรที่ทับกันเลย Workload A ใช้แค่ GPU [0, 1, 2] ส่วน Workload B ใช้แค่ CPU 
+และ Workload C ใช้ GPU [3] ที่ยังว่าง เมื่อรวมการขอใช้ RAM ของทั้งสามงานจะได้ว่า 40 + 16 + 2 = 58GB ก็ยังอยู่ภายใต้ลิมิต 64GB ของระบบ OS 
+จึงยอมให้ 3 งานรันขนานกันไปได้เลยโดยไม่มีปัญหาอะไรเลย
+
+3. Course Reflection (AI Engineering Context):
+การเขียนPython หรือ PyTorch เพื่อไปฝึกโมเดล เป็นแค่ส่วนเดียวในงาน ยังมีด้านอื่นๆอีกมาก เช่น การนำโมเดลลงไปdeployในฮาร์ดแวร์ที่มีข้อจำกัดมากมาย OS 
+จะเข้ามาช่วยเราในการปรับให้เราสามารถจัดการทรัพยากร ภายในระบบได้อย่างมีประสิทธิ์ภาพทำให้เราทำงานได้ดีในข้อจำกัดต่างๆในหลายสถานะการณ์
